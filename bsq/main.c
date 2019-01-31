@@ -6,26 +6,12 @@
 /*   By: atropnik <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 00:04:12 by atropnik          #+#    #+#             */
-/*   Updated: 2019/01/30 22:04:53 by atropnik         ###   ########.fr       */
+/*   Updated: 2019/01/30 23:23:13 by atropnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "ft_header.h"
-
-/*
-typedef struct buffer_s {
-	char buffer[4096];
-	int last_byte;
-} buffer_t;
-
-typedef struct square_s {
-	int len;
-	int x; // top left x
-	int y; // top left y
-} square_t;
-*/
 
 square_t 	*find_sub_square(char **mat, int mat_size)
 {
@@ -73,11 +59,10 @@ square_t 	*find_sub_square(char **mat, int mat_size)
 		}
 	}
 	if (!(square = malloc(sizeof(square_t))))
-		printf("ERROR\n");
+		put_error();
 	square->x = x_val;
 	square->y = y_val;
 	square->len = max - 1;
-	printf("%d:%d:%d\n", square->len, square->x, square->y);
 	return square;
 }
 
@@ -85,12 +70,16 @@ char	**fill_square(char **mat, square_t *square)
 {
 	int i;
 	int j;
+	int stop;
+	int stop2;
 
 	i = square->y;
-	while (i < (i + square->len))
+	stop = i + square->len;
+	while (i < stop)
 	{
 		j = square->x;
-		while(j < (j + square->len))
+		stop2 = j + square->len;
+		while(j < stop2)
 		{
 			mat[i][j] = 'x';
 			j++;
@@ -110,9 +99,9 @@ void print_mat(char **mat)
 	{
 		j = -1;
 		while(++j < N) {
-			printf("%c", mat[i][j]);
+			ft_putchar("%c", mat[i][j]);
 		}
-		printf("\n");
+		ft_putchar("\n");
 	}
 }
 
@@ -129,11 +118,9 @@ int main(int argc, char **argv)
 		file = import_file(argv[i]);
 		mat = create_matrix(file);
 		print_mat(mat);
-		printf("\n");
 		square = find_sub_square(mat, N);
 		print_mat(fill_square(mat, square));
-		printf("%d:%d:%d\n", square->len, square->x, square->y);
-		printf("\n");
+		ft_putchar("\n");
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: atropnik <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 03:56:42 by atropnik          #+#    #+#             */
-/*   Updated: 2019/01/31 04:04:58 by atropnik         ###   ########.fr       */
+/*   Updated: 2019/01/31 04:06:56 by atropnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,4 @@ void	ft_print_numbers(void)
 	i = 47;
 	while(++i <= 57)
 		write(1, &i, 1);
-}
-
-int		main()
-{
-	ft_print_numbers();
-	return (0);
 }
