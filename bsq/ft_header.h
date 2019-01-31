@@ -6,7 +6,7 @@
 /*   By: smaddox <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 20:52:46 by smaddox           #+#    #+#             */
-/*   Updated: 2019/01/30 18:41:41 by smaddox          ###   ########.fr       */
+/*   Updated: 2019/01/30 21:10:41 by atropnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define BUF_SIZE 1024
 
 // Size of given matrix is N X N
-#define N 20
+#define N 30
 
 typedef struct square_s 
 {

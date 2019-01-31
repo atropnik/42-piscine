@@ -6,7 +6,7 @@
 /*   By: atropnik <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 00:04:12 by atropnik          #+#    #+#             */
-/*   Updated: 2019/01/30 19:30:10 by atropnik         ###   ########.fr       */
+/*   Updated: 2019/01/30 21:20:00 by atropnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ square_t 	*find_sub_square(char **mat, int mat_size)
 	int j;
 	int small;
 
-	hor[0][0] = ver[0][0] = (mat[0][0] == '.');
+	hor[0][0] = ver[0][0] = (mat[0][0] == 'X');
 	i = -1;
 	while (++i < mat_size)
 	{
@@ -73,7 +73,6 @@ square_t 	*find_sub_square(char **mat, int mat_size)
 			{
 				if (ver[i][j - small + 1] >= small && hor[i - small + 1][j] >= small)
 				{
-					printf("%d:%d:%d\n", max, i, j);
 					max = small;
 					y_val = i - max + 1;
 					x_val = j - max + 1;
@@ -86,7 +85,27 @@ square_t 	*find_sub_square(char **mat, int mat_size)
 	square->x = x_val;
 	square->y = y_val;
 	square->len = max - 1;
+	printf("%d:%d:%d\n", max, square->y, square->x);
 	return square;
+}
+
+char	**fill_square(char **mat, square_t *square)
+{
+	int i;
+	int j;
+	
+	i = square->y;
+	while (i < (i + square->len))
+	{
+		j = square->x;
+		while(j < (j + square->len))
+		{
+			mat[i][j] = 'X';
+			j++;
+		}
+		i++;
+	}
+	return (mat);
 }
 
 void print_mat(char **mat) 
@@ -110,6 +129,7 @@ int main(int argc, char **argv)
     char **mat;
 	char *file;
 	int i;
+	square_t *square;
 
 	i = 1;
 	while (i < argc)
@@ -117,7 +137,9 @@ int main(int argc, char **argv)
 		file = import_file(argv[i]);
 		mat = create_matrix(file);	
 		print_mat(mat);
-		square_t *square = find_sub_square(mat, N);
+		printf("\n");
+		square = find_sub_square(mat, N);
+		print_mat(fill_square(mat, square));
 		printf("%d:%d:%d\n", square->len, square->x, square->y);
 		printf("\n");
 		i++;
