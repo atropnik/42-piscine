@@ -6,7 +6,7 @@
 /*   By: smaddox <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 20:52:46 by smaddox           #+#    #+#             */
-/*   Updated: 2019/01/30 21:10:41 by atropnik         ###   ########.fr       */
+/*   Updated: 2019/01/30 22:00:15 by atropnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define BUF_SIZE 1024
 
 // Size of given matrix is N X N
-#define N 30
+#define N 7
 
 typedef struct square_s 
 {
@@ -39,6 +39,7 @@ typedef struct buffer_s
 buffer_t 	*init_buffer(void);
 square_t 	*find_sub_square(char **mat, int mat_size);
 void 		print_mat(char **mat);
+int 		get_min(int x, int y);
 
 /*file operations*/
 char	*import_file(char *file);

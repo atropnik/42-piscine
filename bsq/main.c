@@ -6,7 +6,7 @@
 /*   By: atropnik <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 00:04:12 by atropnik          #+#    #+#             */
-/*   Updated: 2019/01/30 21:20:00 by atropnik         ###   ########.fr       */
+/*   Updated: 2019/01/30 22:04:53 by atropnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ typedef struct square_s {
 	int y; // top left y
 } square_t;
 */
-// A utility function to find minimum of two numbers
-int 		get_min(int x, int y)
-{
-	if (x < y)
-		return x;
-	else
-		return y;
-}
 
 square_t 	*find_sub_square(char **mat, int mat_size)
 {
@@ -46,14 +38,14 @@ square_t 	*find_sub_square(char **mat, int mat_size)
 	int j;
 	int small;
 
-	hor[0][0] = ver[0][0] = (mat[0][0] == 'X');
+	hor[0][0] = ver[0][0] = (mat[0][0] == '.');
 	i = -1;
 	while (++i < mat_size)
 	{
 		j = -1;
 		while (++j < mat_size)
 		{
-			if (mat[i][j] == 'O')
+			if (mat[i][j] == 'o')
 				ver[i][j] = hor[i][j] = 0;
 			else
 			{
@@ -85,7 +77,7 @@ square_t 	*find_sub_square(char **mat, int mat_size)
 	square->x = x_val;
 	square->y = y_val;
 	square->len = max - 1;
-	printf("%d:%d:%d\n", max, square->y, square->x);
+	printf("%d:%d:%d\n", square->len, square->x, square->y);
 	return square;
 }
 
@@ -93,14 +85,14 @@ char	**fill_square(char **mat, square_t *square)
 {
 	int i;
 	int j;
-	
+
 	i = square->y;
 	while (i < (i + square->len))
 	{
 		j = square->x;
 		while(j < (j + square->len))
 		{
-			mat[i][j] = 'X';
+			mat[i][j] = 'x';
 			j++;
 		}
 		i++;
@@ -108,13 +100,13 @@ char	**fill_square(char **mat, square_t *square)
 	return (mat);
 }
 
-void print_mat(char **mat) 
+void print_mat(char **mat)
 {
 	int i;
 	int j;
 
 	i = -1;
-	while(++i < N) 
+	while(++i < N)
 	{
 		j = -1;
 		while(++j < N) {
@@ -133,9 +125,9 @@ int main(int argc, char **argv)
 
 	i = 1;
 	while (i < argc)
-	{		
+	{
 		file = import_file(argv[i]);
-		mat = create_matrix(file);	
+		mat = create_matrix(file);
 		print_mat(mat);
 		printf("\n");
 		square = find_sub_square(mat, N);
