@@ -6,28 +6,24 @@
 /*   By: atropnik <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 01:35:28 by atropnik          #+#    #+#             */
-/*   Updated: 2019/02/01 01:51:09 by atropnik         ###   ########.fr       */
+/*   Updated: 2019/03/01 02:40:09 by atropnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_atoi(const char *str)
 {
-	int sign;
-	int total;
-	int i;
+	char 	sign;
+	int		total;
 
-	i = 0;
-	sign = 1;
 	total = 0;
-	while (str[i] != '\0')
+	sign = 1;
+	while (*str != '\0')
 	{
-		if (str[i] <= 32 || str[i] == '+')
-			;
-		if (str[i] == '-')
-			sign = -1 * sign;
-		if (str[i] >= 48 && str[i] <= 57)
-			total = total * 10 + (str[i] - 48);
-		i++;
+		if (*str == '-')
+			sign = -sign;
+		if (*str >= '0' && *str <= '9')
+			total = total * 10 + (*str - 48);
+		str++;
 	}
 	return (sign * total);
 }
