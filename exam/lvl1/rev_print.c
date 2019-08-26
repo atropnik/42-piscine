@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff_last_param.c                                   :+:      :+:    :+:   */
+/*   rev_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/25 09:05:46 by exam              #+#    #+#             */
-/*   Updated: 2019/06/25 09:21:35 by exam             ###   ########.fr       */
+/*   Created: 2019/06/25 09:28:32 by exam              #+#    #+#             */
+/*   Updated: 2019/06/25 09:33:58 by exam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,23 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *str)
+void	ft_rev_putstr(char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
-	{
-		ft_putchar(str[i]);
 		i++;
-	}
+	while (--i >= 0)
+		ft_putchar(str[i]);
 }
 
 int		main(int argc, char **argv)
 {
-	if (argc < 2)
+	if (argc != 2)
 		;
 	else
-	{
-		int i;
-
-		i = 1;
-		while (i < argc)
-			i++;
-		ft_putstr(argv[i - 1]);
-	}
+		ft_rev_putstr(argv[1]);
 	ft_putchar('\n');
 	return (0);
 }
